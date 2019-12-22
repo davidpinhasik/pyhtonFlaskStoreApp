@@ -44,6 +44,6 @@ api.add_resource(UserRegister, '/register')  # this lists the route for resource
 api.add_resource(Store, '/store/<string:name>')  # this lists the route for resource Store
 api.add_resource(StoreList, '/stores')  # this lists the route for resource Stores
 
-if __name__ == '__main__':
-    db.init_app(app)
-    app.run(port=5000, debug=True)
+# if __name__ == '__main__':
+db.init_app(app)
+app.run(port=5000, debug=True)
