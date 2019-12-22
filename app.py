@@ -1,3 +1,5 @@
+import os
+
 from flask import Flask
 from flask_restful import Api
 from flask_jwt import JWT
@@ -17,7 +19,7 @@ All resources that we define are classes.
 """
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:///data.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False  # This just turns off the flask SQLAlchemy mod tracker
 # but not the SQLAlchemy mod tracker
 app.secret_key = 'somesecretkeyb'
