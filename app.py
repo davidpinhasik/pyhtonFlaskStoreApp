@@ -23,10 +23,6 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False  # This just turns off the 
 app.secret_key = 'somesecretkeyb'
 api = Api(app)
 
-@app.before_first_request  # flask decorator that runs next commandbefore first request. creates tables if don't exsst
-def create_tables():
-    db.create_all()
-
 # JWT() creates a new endpoint named /auth. When we call /auth, we send it a username and password. The JWT extension
 # gets the username and password and sends it over to the authenticate() function which takes in a username and
 # password, and looks up the user by username and then it will compare it to the password that we will receive
@@ -44,6 +40,6 @@ api.add_resource(UserRegister, '/register')  # this lists the route for resource
 api.add_resource(Store, '/store/<string:name>')  # this lists the route for resource Store
 api.add_resource(StoreList, '/stores')  # this lists the route for resource Stores
 
-# if __name__ == '__main__':
-db.init_app(app)
-app.run(port=5000, debug=True)
+if __name__ == '__main__':
+    db.init_app(app)
+    app.run(port=5000, debug=True)
